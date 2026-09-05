@@ -1,0 +1,10 @@
+{
+   "extensionDescription": {
+      "description": "Short extension description shown by the browser and extension stores",
+      "message": "Make ChatGPT better for reading and work with wider layouts, long-chat navigation, search, bookmarks, and PDF/Markdown/TXT export."
+   },
+   "extensionName": {
+      "description": "Extension display name",
+      "message": "GPT View+"
+   }
+}

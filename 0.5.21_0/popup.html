@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPT View+</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true">
+    <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol>
+    <symbol id="i-reading" viewBox="0 0 24 24"><path d="M4 5.5c2.6-.8 5-.3 8 1.5v12c-3-1.8-5.4-2.3-8-1.5zM20 5.5c-2.6-.8-5-.3-8 1.5v12c3-1.8 5.4-2.3 8-1.5z"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8l-5 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M8 10h8M8 13h5"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 24 24"><path d="M8 3h8v3H8zM5 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/><path d="M3 12h18"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4 8l4 4 4-7 4 7 4-4-2 10H6z"/><path d="M6 21h12"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.5A8 8 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5z"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M8 15h8M8 18h6"/></symbol>
+    <symbol id="i-md" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M6 15v-6l3 3 3-3v6M16 9v6m0 0-2-2m2 2 2-2"/></symbol>
+    <symbol id="i-txt" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M8 12h8M8 15h8M8 18h5"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 7h11a5 5 0 1 1-4 8M4 7l3-3M4 7l3 3"/></symbol>
+    <symbol id="i-top" viewBox="0 0 24 24"><path d="M12 20V5m0 0-5 5m5-5 5 5"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path d="M7 12h10M12 7v10"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24"><path d="M5 6h10M5 12h14M5 18h8"/><circle cx="18" cy="6" r="1"/><circle cx="16" cy="18" r="1"/></symbol>
+  </svg>
+
+  <main class="panel">
+    <header class="header">
+      <div class="brand-wrap"><img src="assets/icon48.png" class="brand-logo" alt="GPT View+" /><h1>GPT View+</h1></div>
+      <div class="header-actions"><button class="icon-btn gold" id="proBtn"><svg><use href="#i-crown"/></svg></button><button class="icon-btn" id="settingsBtn"><svg><use href="#i-gear"/></svg></button><button class="lang-btn" id="languageBtn" type="button" title="English">EN</button><button class="icon-btn" id="themeBtn"><svg><use href="#i-moon"/></svg></button></div>
+    </header>
+
+    <div class="layout-shell">
+      <aside class="side-tabs">
+        <button class="side-tab active" data-target="section-export"><svg><use href="#i-export"/></svg><span>导出</span></button>
+        <button class="side-tab" data-target="section-layout"><svg><use href="#i-layout"/></svg><span>布局</span></button>
+        <button class="side-tab" data-target="section-reading"><svg><use href="#i-reading"/></svg><span>阅读</span></button>
+        <button class="side-tab" data-target="section-message"><svg><use href="#i-message"/></svg><span>用户消息</span></button>
+        <button class="side-tab" data-target="section-tools"><svg><use href="#i-tools"/></svg><span>工具</span></button>
+      </aside>
+
+      <section class="content-scroll" id="contentScroll">
+        <section class="settings-section" id="section-export">
+          <div class="section-head"><svg><use href="#i-export"/></svg><h2>导出</h2></div>
+          <div class="export-row four">
+            <button class="big-btn" id="exportPdf"><svg class="red"><use href="#i-pdf"/></svg><b>导出 PDF</b></button>
+            <button class="big-btn" id="exportMd"><svg><use href="#i-md"/></svg><b>导出 Markdown</b></button>
+            <button class="big-btn" id="copyMd"><svg><use href="#i-copy"/></svg><b>复制 Markdown</b></button>
+            <button class="big-btn" id="exportTxt"><svg><use href="#i-txt"/></svg><b>导出 TXT</b></button>
+          </div>
+          <button class="config-toggle" id="exportConfigToggle" type="button"><span>导出设置</span><small id="exportSummary">当前已显示内容 · 保留格式</small><b>⌄</b></button>
+          <div class="export-config" id="exportConfig">
+            <div class="export-mode-row">
+              <span>导出模式</span>
+              <div class="mode-buttons">
+                <button type="button" class="export-mode active" data-value="current">当前已显示</button>
+                <button type="button" class="export-mode" data-value="all">全部聊天</button>
+                <button type="button" class="export-mode" data-value="custom">自定义</button>
+              </div>
+            </div>
+            <div class="custom-export-block" id="customExportBlock">
+              <div class="config-grid custom-grid">
+                <label>导出角色<select id="exportScope"><option value="all">全部问答</option><option value="user">仅我的问题</option><option value="assistant">仅 GPT 回答</option><option value="bookmarks">仅书签</option></select></label>
+                <div class="range-fields active" id="rangeFields"><label>从第 <input id="exportStart" type="number" min="1" value="1"> 问</label><span>—</span><label>到第 <input id="exportEnd" type="number" min="1" value="999"> 问</label></div>
+              </div>
+            </div>
+            <div class="config-checks compact-checks">
+              <label><input id="exportIncludeMeta" type="checkbox" checked> 包含标题与来源</label>
+              <label><input id="exportIncludeImages" type="checkbox" checked> 保留图片</label>
+            </div>
+            <p class="config-note" id="exportModeNote">默认只导出当前页面已经加载出来的对话，不进行自动滚动。选择“全部聊天”或“自定义”时，会先扫描完整聊天内容，再进行导出。</p>
+            <div class="config-actions"><button id="exportConfigDone" type="button">完成</button></div>
+          </div>
+        </section>
+
+        <section class="settings-section" id="section-layout">
+          <div class="section-head"><svg><use href="#i-layout"/></svg><h2>布局</h2></div>
+          <div class="settings-row"><div class="field-label">宽度模式</div><div class="seg-grid four">
+            <button class="seg-btn width-btn" data-value="narrow"><span>窄</span></button><button class="seg-btn width-btn" data-value="medium"><span>适中</span></button><button class="seg-btn width-btn" data-value="wide"><span>宽</span></button><button class="seg-btn width-btn" data-value="custom"><span>自定义</span></button>
+          </div></div>
+          <div class="custom-control" id="customWidthRow"><span>自定义宽度</span><input id="customWidth" type="range" min="900" max="1500" step="20"><output id="customWidthValue">1400px</output></div>
+        </section>
+
+        <section class="settings-section" id="section-reading">
+          <div class="section-head"><svg><use href="#i-reading"/></svg><h2>阅读</h2></div>
+          <div class="reading-grid">
+            <div class="read-field tone-field"><label>页面色调</label><div class="swatches"><button class="swatch" data-value="default" style="--sw:#f9fbff"></button><button class="swatch" data-value="warm" style="--sw:#f5eddc"></button><button class="swatch" data-value="soft" style="--sw:#eceef2"></button><button class="swatch" data-value="dark" style="--sw:#202123"></button><label class="swatch custom-swatch" title="自定义"><input id="customTone" type="color"><span></span></label></div></div>
+            <div class="read-field"><label>字体大小</label><div class="stepper"><button id="fontMinus">−</button><output id="fontValue">16px</output><button id="fontPlus">＋</button></div></div>
+            <div class="read-field line-field"><label>行高</label><div class="line-buttons"><button class="line-btn" data-value="1.55">紧</button><button class="line-btn" data-value="1.72">适中</button><button class="line-btn" data-value="1.9">宽</button></div></div>
+          </div>
+          <div class="custom-control line-custom"><span>自定义行高</span><input id="lineHeightRange" type="range" min="1.35" max="2.10" step="0.05"><output id="lineHeightValue">1.72</output></div>
+        </section>
+
+        <section class="settings-section" id="section-message">
+          <div class="section-head message-head"><div><svg><use href="#i-message"/></svg><h2>用户消息</h2></div><label class="emphasis-toggle"><span>强调用户消息</span><span class="switch"><input id="messageEmphasis" type="checkbox"><span></span></span></label></div>
+          <div class="message-controls" id="messageControls">
+            <div class="message-inline-grid">
+              <div class="message-field style-field"><label>强调样式</label><div class="bubble-grid"><button class="bubble-style" data-value="soft"><span class="bubble-demo soft"></span></button><button class="bubble-style" data-value="outline"><span class="bubble-demo outline"></span></button><button class="bubble-style" data-value="card"><span class="bubble-demo card"></span></button></div></div>
+              <div class="message-field color-field"><label>配色</label><div class="color-picks"><button class="accent" data-value="#2f64ff" style="--c:#2f64ff"></button><button class="accent" data-value="#9c5cff" style="--c:#9c5cff"></button><button class="accent" data-value="#5fc98f" style="--c:#5fc98f"></button><button class="accent" data-value="#ff9a4b" style="--c:#ff9a4b"></button><label class="accent accent-custom"><input id="customAccent" type="color"><span></span></label></div></div>
+              <div class="message-field strength-field"><label>颜色深浅</label><div class="strength-inline"><input id="messageStrength" type="range" min="15" max="100" step="5"><output id="messageStrengthValue">45%</output></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-section" id="section-tools">
+          <div class="section-head"><svg><use href="#i-tools"/></svg><h2>工具</h2></div>
+          <div class="tool-grid"><button class="tool-btn" id="codeWrapBtn"><svg><use href="#i-code"/></svg><span>代码换行</span></button><button class="tool-btn" id="clearBtn"><svg><use href="#i-reset"/></svg><span>恢复默认</span></button><button class="tool-btn" id="fullScanBtn"><svg><use href="#i-scan"/></svg><span>完整扫描</span></button><button class="tool-btn" id="openNavigator"><svg><use href="#i-nav"/></svg><span>打开导航</span></button></div>
+          <div class="nav-mini-row"><div class="nav-mini-copy"><svg><use href="#i-nav"/></svg><div><b>长对话导航</b><small>问题目录、搜索、书签、完整扫描；支持已加载图片缩略图</small></div></div><label class="switch"><input id="navigatorEnabled" type="checkbox" checked><span></span></label></div>
+        </section>
+      </section>
+    </div>
+    <footer class="footer"><a class="contact" href="mailto:1508925162@qq.com">有问题联系邮箱：1508925162@qq.com</a><span>v0.5.21</span></footer>
+    <div class="toast" id="toast"></div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

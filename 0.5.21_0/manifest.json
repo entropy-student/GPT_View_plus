@@ -1,0 +1,26 @@
+{
+   "action": {
+      "default_popup": "popup.html",
+      "default_title": "__MSG_extensionName__"
+   },
+   "content_scripts": [ {
+      "js": [ "content.js" ],
+      "matches": [ "https://chatgpt.com/*" ],
+      "run_at": "document_idle"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_extensionDescription__",
+   "host_permissions": [ "https://chatgpt.com/*" ],
+   "icons": {
+      "128": "assets/icon128.png",
+      "16": "assets/icon16.png",
+      "32": "assets/icon32.png",
+      "48": "assets/icon48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlVzA9yOqxctz+yXZ8XFDnQuuKjXsVP1pjX6dXLr1n9eTfRXGUSjg8rqZillSccgbZliE7FIDuFnF2GKx4ZT0eZCCTqRpfJ9e8ArYZd4AzuJitOrDRiVoJ6QP/L2zAC/PTGTE1CsEAVbhGm54cbyAKrhBHZ32DFVsBXnUNMB8p0oSBUyeuaMrfifPlq5Y8FF9m6VgrYsQEFuib0pNNk68Dz2vCisrR5tILq6ZFXb6HZdi6gb2QYEE6a4yBxDF2t4ceIulyU4hNTf6Ub67jfRo7nCQbebnmLPu/trWzoVUdhMoooOlH9xyc0aTzaKW2Dv85dmGQ89aO8Uc606HLasgRwIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_extensionName__",
+   "permissions": [ "storage" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "0.5.21"
+}
