@@ -13,7 +13,6 @@ GPT View+ 是一个面向 ChatGPT
 
 它通过增强 ChatGPT
 网页体验，提供更适合知识工作场景的阅读布局、长对话管理和内容导出能力。
-![Uploading image.png…]()
 
 
 ## 核心功能
